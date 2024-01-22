@@ -32,6 +32,8 @@ int main() {
 
     while (1) {
         std::cout << "\n+++++++ Waiting for new connection ++++++++\n\n";
+        std::cout << "\n+++++++ Open web site at http://localhost:8000/ ++++++++\n\n";
+
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
             perror("In accept");
             exit(EXIT_FAILURE);
@@ -44,7 +46,7 @@ int main() {
         std::string response = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 15\n\nI am web server";
         write(new_socket, response.c_str(), response.length());
         std::cout << "Response sent\n";
-        close(new_socket);
+        close(new_socket);        
     }
     return 0;
 }
