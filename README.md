@@ -20,6 +20,10 @@ Or run the [shell script]()
 ```
 server.sh
 ```
+If u are having struggle running server.sh, don't forget to gave it correct perssion.
+```
+chmod +x server.sh
+```
 
 ## Motivation
 U may ask where is the motivation comming from? Its comming to understand and to handle the best way how to handle back-end and api development, 
