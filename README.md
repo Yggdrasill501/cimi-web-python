@@ -5,6 +5,22 @@ The idea is to create minimastic framework in c++ and CMake to make it as easy a
 The framework must handle Servers and Web Sockets.
 And be as easy to use and possible with simple download to be used
 
+## How to run
+1. Clone the repository
+2. Compile it using
+```
+g++ -std=c++17 -o server server.cpp
+```
+3. Execute using
+```
+./server
+```
+
+Or run the [shell script]()
+```
+server.sh
+```
+
 ## Motivation
 U may ask where is the motivation comming from? Its comming to understand and to handle the best way how to handle back-end and api development, 
 and since C/C++ is porobably the most abstract way to do it your self.
