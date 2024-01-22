@@ -14,4 +14,3 @@ public:
 };
 
 #endif // WEB_SOCKET_H
-
