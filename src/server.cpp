@@ -10,7 +10,6 @@ int main() {
     struct sockaddr_in address;
     int addrlen = sizeof(address);
 
-    // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
         perror("In socket");
         exit(EXIT_FAILURE);
