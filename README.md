@@ -21,3 +21,7 @@ gcc -o server server.c
 ```
 ./server
 ```
+## BTW
+Motivation of this project was to make it as simple as possible, and simplicity is always found in minimalism, so for whole project I was using neovim, and if you wish to see my simple config visit [Neovim Setup](https://github.com/Yggdrasill501/yggdrasill501_nvim_setup).
+After this I can say "I USE NEOVIM BTW!!!"
+And for the future motivation I will implent this on my Raspberry PI, using arch and packman, so i can say "I USE ARCHLINUX BTW"
