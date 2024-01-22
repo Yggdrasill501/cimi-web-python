@@ -31,8 +31,8 @@ int main() {
     }
 
     while (1) {
+        std::cout << "\nServer running at http://localhost:8000\n";
         std::cout << "\n+++++++ Waiting for new connection ++++++++\n\n";
-        std::cout << "\n+++++++ Open web site at http://localhost:8000/ ++++++++\n\n";
 
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
             perror("In accept");
@@ -41,9 +41,12 @@ int main() {
 
         char buffer[30000] = {0};
         valread = read(new_socket, buffer, 30000);
-        std::cout << "Received request:\n" << buffer << std::endl;
+
+        // I am Buffer I am here just for debug :)
+        // std::cout << "Received request:\n" << buffer << std::endl;
 
         std::string response = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 15\n\nI am web server";
+        
         write(new_socket, response.c_str(), response.length());
         std::cout << "Response sent\n";
         close(new_socket);        
