@@ -12,3 +12,12 @@ and since C/C++ is porobably the most abstract way to do it your self.
 ## Simple Web server
 In [Simple Socket](https://github.com/Yggdrasill501/cimi-web/blob/main/simple_websocket/simple_socket.c), I used simple implentation of server that retrun on ***local host port 8000*** message I am web server.
 I used also some modules from standard library to make it as easy as possible to implent just as showcase a to reminder how "Cimple" it can be to handle server. 
+### Run simple socket
+1. Compile using:
+```
+gcc -o server server.c
+```
+2. To execute:
+```
+./server
+```
