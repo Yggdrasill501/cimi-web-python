@@ -13,6 +13,10 @@ public:
     bool shouldShutdown(const std::string& request);
     std::string getHtmlContent(const std::string& filepath);
 
+    int acceptNewConnection();
+    std::string readRequest(int client_fd);
+    void sendResponse(int client_fd, const std::string& httpResponse);
+    bool isShutdownCommand(const std::string& request);
 
 private:
     int server_fd;

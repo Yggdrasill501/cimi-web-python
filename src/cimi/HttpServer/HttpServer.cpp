@@ -37,34 +37,23 @@ HttpServer::HttpServer(int port) : port(port) {
 }
 
 void HttpServer::start() {
+    std::string htmlContent = getHtmlContent("index.html");
+    std::string httpResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: "
+                               + std::to_string(htmlContent.length()) + "\n\n" + htmlContent;
+
     while (true) {
-        std::string htmlContent = getHtmlContent("index.html");
-        std::string httpResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: " + std::to_string(htmlContent.length()) + "\n\n" + htmlContent;
-
         std::cout << "\n+++++++ Waiting for new connection ++++++++\n\n";
+        int client_fd = acceptNewConnection();
+        if (client_fd < 0) continue;
 
-        struct sockaddr_in client_addr{};
-        socklen_t client_len = sizeof(client_addr);
-        int client_fd = accept(server_fd, (struct sockaddr *)&client_addr, &client_len);
-
-        if (client_fd < 0) {
-            perror("In accept");
-            continue;
-        }
-
-        char buffer[1024] = {0};  // Declare buffer here
-        read(client_fd, buffer, 1024);
-
-        std::string request(buffer);
-        if (shouldShutdown(request)) {
-            std::string response = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 7\n\nGoodbye";
-            write(client_fd, response.c_str(), response.length());
+        std::string request = readRequest(client_fd);
+        if (isShutdownCommand(request)) {
+            sendResponse(client_fd, "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 7\n\nGoodbye");
             close(client_fd);
-            break; // Break out of the loop to stop the server
+            break;
         }
 
-        write(client_fd, httpResponse.c_str(), httpResponse.length());
-
+        sendResponse(client_fd, httpResponse);
         close(client_fd);
     }
 }
@@ -81,4 +70,29 @@ std::string HttpServer::getHtmlContent(const std::string& filepath) {
     std::stringstream buffer;
     buffer << file.rdbuf();
     return buffer.str();
+}
+
+int HttpServer::acceptNewConnection() {
+    struct sockaddr_in client_addr{};
+    socklen_t client_len = sizeof(client_addr);
+    int client_fd = accept(server_fd, (struct sockaddr *)&client_addr, &client_len);
+
+    if (client_fd < 0) {
+        perror("In accept");
+    }
+    return client_fd;
+}
+
+std::string HttpServer::readRequest(int client_fd) {
+    char buffer[1024] = {0};
+    read(client_fd, buffer, 1024);
+    return std::string(buffer);
+}
+
+void HttpServer::sendResponse(int client_fd, const std::string& httpResponse) {
+    write(client_fd, httpResponse.c_str(), httpResponse.length());
+}
+
+bool HttpServer::isShutdownCommand(const std::string& request) {
+    return request.find("GET /shutdown HTTP/1.1") != std::string::npos;
 }

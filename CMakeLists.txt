@@ -36,3 +36,5 @@ add_executable(CimiServer ${SOURCES}
         src/cimi/WebSocket/WebSocket.h
         src/cimi/WebSocket/WebSocketConnetion.h
         src/cimi/WebSocket/WebSocketServer.h)
+
+file(COPY ${CMAKE_SOURCE_DIR}/src/index.html DESTINATION ${CMAKE_BINARY_DIR})
