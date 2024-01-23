@@ -36,7 +36,7 @@ HttpServer::HttpServer(int port) : port(port) {
 
 }
 
-void HttpServer::start() {
+void HttpServer::startServer() {
     std::string htmlContent = getHtmlContent("index.html");
     std::string httpResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: "
                                + std::to_string(htmlContent.length()) + "\n\n" + htmlContent;

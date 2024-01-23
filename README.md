@@ -6,22 +6,25 @@ The framework must handle Servers and Web Sockets.
 And be as easy to use and possible with simple download to be used
 
 ## How to run
-To run server just excecute [shell script](https://github.com/Yggdrasill501/cimi-web/blob/main/server.sh)
+To run server just execute [shell script](https://github.com/Yggdrasill501/cimi-web/blob/main/server.sh)
 ```
 server.sh
 ```
-If u are having struggle running server.sh, don't forget to gave it correct permission.
+If you're having struggle running server.sh, don't forget to gave it correct permission.
 ```
 chmod +x server.sh
 ```
 
 ## Motivation
-U may ask where is the motivation coming from? Its coming to understand and to handle the best way how to handle back-end and api development, 
-and since C/C++ is porobably the most abstract way to do it your self.
+U may ask where is the motivation coming from? It's coming to understand and to handle the best way how to handle back-end and api development, 
+and since C/C++ is probably the most abstract way to do it your self.
 
 ## Simple Web server
-In [Simple Socket](https://github.com/Yggdrasill501/cimi-web/blob/main/simple_websocket/simple_socket.c), I used simple implementation of server that run on ***local host port 8000*** message I am web server.
-I used also some modules from standard library to make it as easy as possible to implement just as showcase a to reminder how "Cimple" it can be to handle server. 
+In [Simple Socket](https://github.com/Yggdrasill501/cimi-web/blob/main/simple_websocket/simple_socket.c), 
+I used simple implementation of server that run on ***local host port 8000*** message I am web server.
+I used also some modules from standard library to make it as easy as possible to implement just as showcase a to 
+reminder how "Cimple" it can be to handle server. 
+
 ### Run simple socket
 1. Compile using:
 ```
@@ -32,8 +35,12 @@ gcc -o server server.c
 ./server
 ```
 
-## What should micro framework implent ?
-After implenting http repsonse into browser on any ip, in my case [localhost 8000](http://localhost:8000/), implenting basic reading of html and implenting it into framework and closing connection after making response on http://localhost:8000/shutdown (for debuging purposes), I kinda struggled what next to implement and becasue we are in 2024 I asked ChatGPT what should micro framework have and for now i will make from it little to-do list:
+## What should micro framework implement ?
+After implementing http response into browser on any ip, in my case [localhost 8000](http://localhost:8000/), 
+implementing basic reading of html and implementing it into framework and closing connection after making 
+response on http://localhost:8000/shutdown (for debugging purposes), I kinda struggled what next to implement and 
+because we are in 2024 I asked ChatGPT what should micro framework have and for now 
+I will make from it little to-do list:
 
 - [ ] Routing: A routing system to handle incoming HTTP requests and direct them to the appropriate controller or endpoint.
 - [ ] Middleware: Support for middleware functions to perform tasks like authentication, logging, request/response processing, and more.
@@ -56,9 +63,9 @@ After implenting http repsonse into browser on any ip, in my case [localhost 800
 - [ ] Routing Parameters: Support for dynamic routing parameters and URL parameters.
 - [ ] Extensibility: A way to extend or customize the framework's functionality based on the specific needs of the application.
 
-I realise I wont be able to use all of it but lets just how far I can get.
+I realise I won't be able to use all of it but lets just how far I can get.
 
 ## BTW
 Motivation of this project was to make it as simple as possible, and simplicity is always found in minimalism, so for whole project I was using neovim, and if you wish to see my simple config visit [Neovim Setup](https://github.com/Yggdrasill501/yggdrasill501_nvim_setup).
 After this I can say "I USE NEOVIM BTW!!!"
-And for the future motivation I will implement this on my Raspberry PI, using arch and pacman, so i can say "I USE ARCHLINUX BTW"
+And for the future motivation I will implement this on my Raspberry PI, using arch and pacman, so I can say "I USE ARCHLINUX BTW"

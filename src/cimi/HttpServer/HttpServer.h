@@ -8,7 +8,7 @@ class HttpServer {
 public:
     explicit HttpServer(int port);
 
-    void start();
+    void startServer();
 
     bool shouldShutdown(const std::string& request);
     std::string getHtmlContent(const std::string& filepath);

@@ -2,7 +2,7 @@
 
 int main() {
     HttpServer server(8000);
-    server.start();
+    server.startServer();
     return 0;
 }
 
