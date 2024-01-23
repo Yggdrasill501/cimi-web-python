@@ -1,13 +1,18 @@
 #!/bin/bash
 
-# Compile the server
-g++ -std=c++17 -o server src/server.cpp
+cd "$(dirname "$0")"
 
-# Check if the compilation was successful
+mkdir -p build && cd build
+
+echo "Running CMake..."
+cmake ..
+
+echo "Compiling the project..."
+make
+
 if [ $? -eq 0 ]; then
     echo "Compilation successful. Running the server..."
-    ./server
+   ./CimiServer
 else
     echo "Compilation failed."
 fi
-

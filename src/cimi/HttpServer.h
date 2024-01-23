@@ -1,28 +1,20 @@
 #ifndef HTTPSERVER_H
 #define HTTPSERVER_H
 
-#include "http_request.h"
-#include "http_response.h"
-#include "WebSocket"
+#include <netinet/in.h>
 
 class HttpServer {
-private:
-    int port;
-    // Additional properties for socket, etc.
-
 public:
     HttpServer(int port);
-
     void start();
 
 private:
-    void handleConnection(/* connection */);
+    int server_fd;
+    int port;
 
-    HttpRequest parseRequest(/* from connection */);
-    HttpResponse handleRequest(const HttpRequest& request);
-    void sendResponse(/* to connection */, const HttpResponse& response);
-    
-    bool isWebSocketRequest(const HttpRequest& request);
-    void handleWebSocket(/* connection */, const HttpRequest& request);}
+    struct sockaddr_in address;
+
+};
 
 #endif // HTTPSERVER_H
+

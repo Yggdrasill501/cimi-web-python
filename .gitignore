@@ -1,2 +1,10 @@
-DS_STORE
+# Ignore the build directory
+build/
+
+# Ignore other files and directories that are commonly generated and should not be committed
+*.o
+*.so
+*.a
+*.log
+.DS_Store
 
