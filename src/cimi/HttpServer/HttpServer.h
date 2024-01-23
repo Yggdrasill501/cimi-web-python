@@ -8,9 +8,11 @@ class HttpServer {
 public:
     explicit HttpServer(int port);
 
-    void start() const;
+    void start();
 
-    static bool shouldShutdown(const std::string& request);
+    bool shouldShutdown(const std::string& request);
+    std::string getHtmlContent(const std::string& filepath);
+
 
 private:
     int server_fd;

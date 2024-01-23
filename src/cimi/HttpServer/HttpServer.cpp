@@ -3,6 +3,9 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
+#include <fstream>
+#include <sstream>
+#include <string>
 
 HttpServer::HttpServer(int port) : port(port) {
     // I AM SOCKET
@@ -33,8 +36,11 @@ HttpServer::HttpServer(int port) : port(port) {
 
 }
 
-void HttpServer::start() const{
+void HttpServer::start() {
     while (true) {
+        std::string htmlContent = getHtmlContent("index.html");
+        std::string httpResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: " + std::to_string(htmlContent.length()) + "\n\n" + htmlContent;
+
         std::cout << "\n+++++++ Waiting for new connection ++++++++\n\n";
 
         struct sockaddr_in client_addr{};
@@ -57,8 +63,7 @@ void HttpServer::start() const{
             break; // Break out of the loop to stop the server
         }
 
-        std::string response = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 13\n\nI AM A SERVER";
-        write(client_fd, response.c_str(), response.length());
+        write(client_fd, httpResponse.c_str(), httpResponse.length());
 
         close(client_fd);
     }
@@ -66,4 +71,14 @@ void HttpServer::start() const{
 
 bool HttpServer::shouldShutdown(const std::string& request) {
     return request.find("GET /shutdown HTTP/1.1") != std::string::npos;
+}
+
+std::string HttpServer::getHtmlContent(const std::string& filepath) {
+    std::ifstream file(filepath);
+    if (!file.is_open()) {
+        return "HTTP/1.1 404 Not Found\nContent-Type: text/plain\nContent-Length: 13\n\n404 Not Found";
+    }
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
 }
