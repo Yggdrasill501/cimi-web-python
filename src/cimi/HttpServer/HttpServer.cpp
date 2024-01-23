@@ -8,58 +8,45 @@
 #include <string>
 
 HttpServer::HttpServer(int port) : port(port) {
-    // I AM SOCKET
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (server_fd == 0) {
         perror("Socket creation failed");
         exit(EXIT_FAILURE);
     }
 
-    // I AM SERVER ADDRESS
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
     address.sin_port = htons(port);
 
-
-    // I BIND SOCKET TO ADDRESS
     if (bind(server_fd, (struct sockaddr *)&address, sizeof(address)) < 0) {
         perror("Bind failed");
         exit(EXIT_FAILURE);
     }
-    
 
-    // I LISTEN TO INCOMING CONNECTIONS
     if (listen(server_fd, 10) < 0) {
         perror("Listen failed");
         exit(EXIT_FAILURE);
     }
-
 }
 
 void HttpServer::startServer() {
-    std::string htmlContent = getHtmlContent("index.html");
-    std::string httpResponse = "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: "
-                               + std::to_string(htmlContent.length()) + "\n\n" + htmlContent;
+    addRoute("/", [this](const std::string& req) { return "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 13\n\nI AM A SERVER"; });
+    addRoute("/shutdown", [](const std::string& req) { return "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 7\n\nGoodbye"; });
 
     while (true) {
-        std::cout << "\n+++++++ Waiting for new connection ++++++++\n\n";
         int client_fd = acceptNewConnection();
         if (client_fd < 0) continue;
 
         std::string request = readRequest(client_fd);
-        if (isShutdownCommand(request)) {
-            sendResponse(client_fd, "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 7\n\nGoodbye");
-            close(client_fd);
+        std::string response = handleRequest(request);
+
+        sendResponse(client_fd, response);
+        close(client_fd);
+
+        if (response.find("Goodbye") != std::string::npos) {
             break;
         }
-
-        sendResponse(client_fd, httpResponse);
-        close(client_fd);
     }
-}
-
-bool HttpServer::shouldShutdown(const std::string& request) {
-    return request.find("GET /shutdown HTTP/1.1") != std::string::npos;
 }
 
 std::string HttpServer::getHtmlContent(const std::string& filepath) {
@@ -95,4 +82,21 @@ void HttpServer::sendResponse(int client_fd, const std::string& httpResponse) {
 
 bool HttpServer::isShutdownCommand(const std::string& request) {
     return request.find("GET /shutdown HTTP/1.1") != std::string::npos;
+}
+
+void HttpServer::addRoute(const std::string& path, RouteHandler handler) {
+    routes[path] = handler;
+}
+
+std::string HttpServer::handleRequest(const std::string& request) {
+    std::istringstream iss(request);
+    std::string method, path;
+    iss >> method >> path;
+
+    auto it = routes.find(path);
+    if (it != routes.end()) {
+        return it->second(request);
+    }
+
+    return "HTTP/1.1 404 Not Found\nContent-Type: text/plain\nContent-Length: 13\n\n404 Not Found";
 }
