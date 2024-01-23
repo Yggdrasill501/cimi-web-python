@@ -20,7 +20,19 @@ include_directories(${PROJECT_SOURCE_DIR}/src/cimi)
 set(SOURCES 
     src/server.cpp
         src/cimi/HttpServer/HttpServer.cpp
-    )
+        src/cimi/HttpRequest/HttpRequest.cpp
+        src/cimi/HttpResponse/HttpResponse.h
+        src/cimi/HttpResponse/HttpResponse.cpp
+        src/cimi/WebSocket/WebSocket.h
+        src/cimi/WebSocket/WebSocketConnetion.h
+        src/cimi/WebSocket/WebSocketServer.h
+        src/cimi/WebSocket/WebSocketFrame.h
+)
 
 # Add executable
-add_executable(CimiServer ${SOURCES})
+add_executable(CimiServer ${SOURCES}
+        src/cimi/HttpRequest/HttpRequest.cpp
+        src/cimi/HttpResponse/HttpResponse.h
+        src/cimi/WebSocket/WebSocket.h
+        src/cimi/WebSocket/WebSocketConnetion.h
+        src/cimi/WebSocket/WebSocketServer.h)

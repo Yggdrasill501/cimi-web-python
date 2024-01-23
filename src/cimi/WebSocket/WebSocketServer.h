@@ -1,8 +1,9 @@
 #ifndef WEBSOCKETSERVER_H
 #define WEBSOCKETSERVER_H
 
-#include "WebSocketConnection.h"
+
 #include <vector>
+#include "WebSocketConnetion.h"
 
 class WebSocketServer {
 public:

@@ -26,7 +26,7 @@ HttpServer::HttpServer(int port) : port(port) {
     }
     
 
-    // I LISTEN TO INCOMING CONNETIONS
+    // I LISTEN TO INCOMING CONNECTIONS
     if (listen(server_fd, 10) < 0) {
         perror("Listen failed");
         exit(EXIT_FAILURE);

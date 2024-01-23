@@ -5,14 +5,14 @@
 
 class HttpServer {
 public:
-    HttpServer(int port);
+    explicit HttpServer(int port);
     void start();
 
 private:
     int server_fd;
     int port;
 
-    struct sockaddr_in address;
+    struct sockaddr_in address{};
 
 };
 
