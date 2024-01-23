@@ -19,7 +19,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src/cimi)
 # Source files
 set(SOURCES 
     src/server.cpp
-    src/cimi/HttpServer.cpp
+        src/cimi/HttpServer/HttpServer.cpp
     )
 
 # Add executable
