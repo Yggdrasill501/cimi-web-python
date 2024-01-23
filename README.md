@@ -6,21 +6,11 @@ The framework must handle Servers and Web Sockets.
 And be as easy to use and possible with simple download to be used
 
 ## How to run
-1. Clone the repository
-2. Compile it using
-```
-g++ -std=c++17 -o server server.cpp
-```
-3. Execute using
-```
-./server
-```
-
-Or run the [shell script]()
+To run server just excecute [shell script](https://github.com/Yggdrasill501/cimi-web/blob/main/server.sh)
 ```
 server.sh
 ```
-If you are having struggle running server.sh, don't forget to gave it correct perssion.
+If u are having struggle running server.sh, don't forget to gave it correct permission.
 ```
 chmod +x server.sh
 ```
