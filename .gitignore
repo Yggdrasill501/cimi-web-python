@@ -8,3 +8,6 @@ build/
 *.log
 .DS_Store
 
+/cmake-build-debug/
+/.idea/.gitignore
+.idea/
