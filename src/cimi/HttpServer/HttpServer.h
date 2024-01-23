@@ -2,11 +2,15 @@
 #define HTTPSERVER_H
 
 #include <netinet/in.h>
+#include "string"
 
 class HttpServer {
 public:
     explicit HttpServer(int port);
-    void start();
+
+    void start() const;
+
+    static bool shouldShutdown(const std::string& request);
 
 private:
     int server_fd;
