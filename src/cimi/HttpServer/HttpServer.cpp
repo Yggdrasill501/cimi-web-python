@@ -33,6 +33,8 @@ void HttpServer::startServer() {
     addRoute("/", [this](const std::string& req) { return "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 13\n\nI AM A SERVER"; });
     addRoute("/shutdown", [](const std::string& req) { return "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length: 7\n\nGoodbye"; });
 
+
+
     while (true) {
         int client_fd = acceptNewConnection();
         if (client_fd < 0) continue;
