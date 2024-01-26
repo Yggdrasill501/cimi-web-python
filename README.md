@@ -42,7 +42,7 @@ response on http://localhost:8000/shutdown (for debugging purposes), I kinda str
 because we are in 2024 I asked ChatGPT what should micro framework have and for now 
 I will make from it little to-do list:
 
-- [ ] Routing: A routing system to handle incoming HTTP requests and direct them to the appropriate controller or endpoint.
+- [x] Routing: A routing system to handle incoming HTTP requests and direct them to the appropriate controller or endpoint.
 - [ ] Middleware: Support for middleware functions to perform tasks like authentication, logging, request/response processing, and more.
 - [ ] Request and Response Handling: Capability to handle and parse incoming HTTP requests and generate appropriate HTTP responses.
 - [ ] Controllers/Handlers: A mechanism for defining and organizing request handlers or controllers to process and respond to incoming requests.
