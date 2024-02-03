@@ -1,55 +1,45 @@
 //
-// Created by Filip Žitný on 02/02/2024.
+// Created by Filip Žitný on 03/02/2024.
 //
+#include <socket/socket.h>
+#include <Server/server.h>
+#include <handler/html_handler.h>
 #include <iostream>
-#include <cimi/socket/socket.h>
-#include <string>
-#include <fstream>
-#include <sstream>
+#include <cstring>
 #include <unistd.h>
 
-std::string readHTMLFile(const std::string& filepath) {
-    std::ifstream fileStream(filepath);
-    std::stringstream buffer;
-    buffer << fileStream.rdbuf();
-    return buffer.str();
+Server::Server() {
+    serverSocket = Socket();
+
+    if (!serverSocket.create()) {
+        throw std::runtime_error("Socket creation failed");
+    }
+
+    if (!serverSocket.bindSocket()) {
+        throw std::runtime_error("Socket bind failed");
+    }
+
+    if (!serverSocket.listenSocket()) {
+        throw std::runtime_error("Socket listen failed");
+    }
 }
 
-int main() {
-    Socket serverSocket;
-
-    // Create, bind, and listen on the socket
-    if (!serverSocket.create()) {
-        perror("Socket creation failed");
-        return -1;
-    }
-    if (!serverSocket.bindSocket()) {
-        perror("Socket bind failed");
-        return -1;
-    }
-    if (!serverSocket.listenSocket()) {
-        perror("Socket listen failed");
-        return -1;
-    }
-
-    std::cout << "Server is listening on port 8080..." << std::endl;
+void Server::runServer() {
+    std::cout << "Server is listening on port " << port << "..." << std::endl;
 
     while (true) {
-
-        // Accept a new connection
         int newSocket = serverSocket.acceptConnection();
         if (newSocket < 0) {
-            perror("Accept failed");
-            continue; // Skip to the next iteration
+            std::cerr << "Accept failed" << std::endl;
+            continue;
         }
 
         char buffer[30000] = {0};
-        long valread = read(newSocket, buffer, 30000); // Read request
+        read(newSocket, buffer, 30000);
         std::cout << "----- Request -----\n" << buffer << std::endl;
 
-        // Very basic request handling
         if (strncmp(buffer, "GET", 3) == 0) {
-            std::string htmlContent = readHTMLFile("index.html"); // Ensure you have an index.html file
+            std::string htmlContent = HtmlLHandler::readHtmlFile("index.html");
             if (htmlContent.empty()) {
                 std::string notFoundMessage = "HTTP/1.1 404 Not Found\nContent-Length: 0\n\n";
                 write(newSocket, notFoundMessage.c_str(), notFoundMessage.length());
@@ -62,7 +52,6 @@ int main() {
             write(newSocket, message.c_str(), message.length());
         }
 
-        close(newSocket); // Close the socket to this client
+        close(newSocket);
     }
-    return 0;
 }

@@ -17,17 +17,21 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_SOURCE_DIR}/src/cimi)
 
 # Source files
-set(SOURCES 
-    src/server.cpp
-        src/server.cpp
+set(SOURCES
         src/cimi/socket/socket.h
         src/cimi/socket/socket.cpp
+        src/cimi/handler/html_handler.cpp
+        src/cimi/handler/html_handler.h
+        examples/src/main.cpp
+        examples/src/main.cpp
+        src/cimi/Server/server.cpp
+        src/cimi/Server/server.h
 )
 
 # Add executable
 add_executable(CimiServer ${SOURCES}
-       src/server.cpp
+        examples/src/main.cpp
 
 )
 
-file(COPY ${CMAKE_SOURCE_DIR}/src/index.html DESTINATION ${CMAKE_BINARY_DIR})
+configure_file(${PROJECT_SOURCE_DIR}/examples/public/index.html ${CMAKE_CURRENT_BINARY_DIR}/index.html COPYONLY)
