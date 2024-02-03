@@ -1,6 +1,0 @@
-- [x] Html handling
-- [x] Client Server aproach
-- [ ] Css handling 
-- [ ] json handling 
-- [ ] Restfull api
-- [ ] enhance examples
