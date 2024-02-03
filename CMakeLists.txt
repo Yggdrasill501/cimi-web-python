@@ -28,6 +28,8 @@ set(SOURCES
         src/cimi/server/server.h
         src/cimi/client/client.cpp
         src/cimi/client/client.h
+        src/app.cpp
+        src/app.h
 )
 
 # Add executable
