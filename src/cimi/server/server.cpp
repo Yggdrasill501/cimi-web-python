@@ -25,7 +25,7 @@ Server::Server() {
 }
 
 void Server::runServer() {
-    std::cout << "Server is listening on port " << port << "..." << std::endl;
+    std::cout << "server is listening on port " << port << "..." << std::endl;
 
     while (true) {
         int newSocket = serverSocket.acceptConnection();

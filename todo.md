@@ -2,17 +2,17 @@
 - [ ] Css handling 
 - [ ] json handling 
 - [ ] Restfull api
-- [ ] Client Serve implentation
+- [ ] Client Server implementation
 
 
-#### Server Clinet logic
+#### Server—Client logic
 
 class server
 - socket 
 - bind to open port
 - read port
 - accept incoming connection
-- read from client 
+- read from the client 
 - print without looking
 
 class client

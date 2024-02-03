@@ -24,8 +24,10 @@ set(SOURCES
         src/cimi/handler/html_handler.h
         examples/src/main.cpp
         examples/src/main.cpp
-        src/cimi/Server/server.cpp
-        src/cimi/Server/server.h
+        src/cimi/server/server.cpp
+        src/cimi/server/server.h
+        src/cimi/client/client.cpp
+        src/cimi/client/client.h
 )
 
 # Add executable
