@@ -8,16 +8,14 @@
 
 class Client {
 private:
-    int port = 8080;
+    Socket socket;
 
 public:
     Client();
-    ~Client();
 
-    void connect(int port);
-    void parseAddress();
-    std::string sendMessage();
-
+    bool connectToServer(int port,const std::string& serverAddress);
+    void sendMessage(const std::string& message);
+    void parseAddress(const std::string& address);
 };
 
 #endif //CIMISERVER_CLIENT_H
