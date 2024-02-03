@@ -1,8 +1,8 @@
 //
 // Created by Filip Žitný on 03/02/2024.
 //
-#ifndef CIMISERVER_CLIENT_H
-#define CIMISERVER_CLIENT_H
+#ifndef CIMIWEB_CLIENT_H
+#define CIMIWEB_CLIENT_H
 #include <socket/socket.h>
 #include <string>
 
@@ -18,4 +18,4 @@ public:
     void parseAddress(const std::string& address);
 };
 
-#endif //CIMISERVER_CLIENT_H
+#endif //CIMIWEB_CLIENT_H

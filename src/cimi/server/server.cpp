@@ -2,7 +2,7 @@
 // Created by Filip Žitný on 03/02/2024.
 //
 #include <socket/socket.h>
-#include <Server/server.h>
+#include <server/server.h>
 #include <handler/html_handler.h>
 #include <iostream>
 #include <cstring>

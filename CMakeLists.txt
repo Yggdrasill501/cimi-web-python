@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Set your project name
-project(CimiServer)
+project(CimiWeb)
 
 # C++ standard
 set(CMAKE_CXX_STANDARD 20)
@@ -31,7 +31,7 @@ set(SOURCES
 )
 
 # Add executable
-add_executable(CimiServer ${SOURCES}
+add_executable(CimiWeb ${SOURCES}
         examples/src/main.cpp
 
 )
