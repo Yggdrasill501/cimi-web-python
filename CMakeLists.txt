@@ -31,6 +31,7 @@ set(SOURCES
         src/app.cpp
         src/app.h
         src/wapper.cpp
+
 )
 
 # Add executable
@@ -40,3 +41,4 @@ add_executable(CimiWeb ${SOURCES}
 )
 
 configure_file(${PROJECT_SOURCE_DIR}/examples/public/index.html ${CMAKE_CURRENT_BINARY_DIR}/index.html COPYONLY)
+add_subdirectory(extern/pybind11)
