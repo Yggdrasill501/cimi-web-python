@@ -15,6 +15,9 @@ endif()
 # Include directories
 include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(${PROJECT_SOURCE_DIR}/src/cimi)
+include_directories(${PROJECT_BINARY_DIR}/extern)
+include_directories(${PROJECT_BINARY_DIR}/extern/pybind11)
+include_directories(${PROJECT_BINARY_DIR}/extern/pybind11/pybind11)
 
 # Source files
 set(SOURCES
@@ -30,6 +33,8 @@ set(SOURCES
         src/cimi/client/client.h
         src/app.cpp
         src/app.h
+        src/wapper.cpp
+
 )
 
 # Add executable
