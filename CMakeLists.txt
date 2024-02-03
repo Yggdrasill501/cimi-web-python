@@ -30,6 +30,7 @@ set(SOURCES
         src/cimi/client/client.h
         src/app.cpp
         src/app.h
+        src/wapper.cpp
 )
 
 # Add executable
