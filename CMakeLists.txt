@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Set your project name
-project(CimiServer)
+project(CimiWeb)
 
 # C++ standard
 set(CMAKE_CXX_STANDARD 20)
@@ -24,12 +24,14 @@ set(SOURCES
         src/cimi/handler/html_handler.h
         examples/src/main.cpp
         examples/src/main.cpp
-        src/cimi/Server/server.cpp
-        src/cimi/Server/server.h
+        src/cimi/server/server.cpp
+        src/cimi/server/server.h
+        src/cimi/client/client.cpp
+        src/cimi/client/client.h
 )
 
 # Add executable
-add_executable(CimiServer ${SOURCES}
+add_executable(CimiWeb ${SOURCES}
         examples/src/main.cpp
 
 )

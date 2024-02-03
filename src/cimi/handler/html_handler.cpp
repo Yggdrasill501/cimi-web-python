@@ -1,7 +1,6 @@
 //
 // Created by Filip Žitný on 02/02/2024.
 //
-
 #include "html_handler.h"
 #include <fstream>
 #include <sstream>
