@@ -34,7 +34,7 @@ bool Socket::create(){
     return sockfd != -1;
 }
 
-bool Socket::bindSocket(){
+bool Socket::bindSocket(int port){
     return bind(sockfd, (struct sockaddr*)&address, sizeof(address)) >= 0;
 }
 

@@ -13,6 +13,7 @@ private:
 
 public:
     Socket();
+    ~Socket();
     explicit Socket(int socket_fd);
     int getSockfd() const;
 
