@@ -5,7 +5,7 @@ The idea is to create a minimalistic framework in c++ and CMake to make it as ea
 The framework must handle Servers and Web Sockets.
 And be as easy to use and possible with simple download to be used
 
-## How to run
+## How to run in C++
 To run server just execute [shell script](https://github.com/Yggdrasill501/cimi-web/blob/main/server.sh)
 ```
 server.sh
@@ -14,7 +14,7 @@ If you're having a struggle running server.sh, remember to give it the correct p
 ```
 chmod +x server.sh
 ```
-## Examples 
+### Examples 
 - Simple Server implementation
 ```c++
 //// For Server listening
@@ -53,27 +53,19 @@ int main() {
 
 - For more Examples check [./examples/](https://github.com/Yggdrasill501/cimi-web/tree/main/examples)
 
+## Import as python package
+```zsh
+pip install cimi-web
+```
+
+```python
+import cimi
+```
+
 ## Motivation
 You may ask where is the motivation coming from?
 It's coming to understand and to handle the best way how to handle back-end and api development,
 and since C/C++ is probably the most abstract way to do it your self.
-
-## Simple Web server
-In [Simple Socket](https://github.com/Yggdrasill501/cimi-web/blob/main/simple_websocket/simple_socket.c), 
-I used simple implementation of server that runs on ***local host port 8000*** message I am web server.
-I used also some modules from standard library to make it as easy as possible to implement as showcase a to 
-reminder how "Cimple" it can be to handle server. 
-
-### Run simple socket
-Compile using:
-```
-gcc -o server server.c
-```
-
-To execute:
-```
-./server
-```
 
 ## BTW
 The Motivation of this project was to make it as simple as possible. 
