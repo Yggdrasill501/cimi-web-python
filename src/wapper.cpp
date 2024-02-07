@@ -1,6 +1,7 @@
 //
 // Created by Filip Žitný on 03/02/2024.
 //
+#include <pybind11>
 #include <server/server.h>
 #include <client/client.h>
 #include <socket/socket.h>

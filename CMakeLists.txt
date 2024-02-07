@@ -34,12 +34,14 @@ set(SOURCES
         src/app.cpp
         src/app.h
         src/wapper.cpp
+        examples/src/server.cpp
 
 )
 
 # Add executable
 add_executable(CimiWeb ${SOURCES}
         examples/src/main.cpp
+        examples/src/server.cpp
 
 )
 
