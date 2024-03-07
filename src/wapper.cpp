@@ -10,16 +10,14 @@
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(cimi,m) {
-
+PYBIND11_MODULE(cimi, m){
     m.doc() = "The C++ micro framework for building web applications.";
     m.def("add", &add, "A function that adds two numbers");
 
     py::class_<Client>(m, "Client")
             .def(py::init<>())
             .def("connect_server", &Client::connectToServer)
-            .def("send_message", &Client::sendMessage)
-            .def("parse_address", &Clinet::parseAddress);
+            .def("send_message", &Client::sendMessage);
 
     py::class_<Server>(m, "Server")
             .def(py::init<>())
