@@ -34,15 +34,19 @@ set(SOURCES
         src/app.cpp
         src/app.h
         src/wapper.cpp
-        examples/src/server.cpp
 
 )
 
 # Add executable
 add_executable(CimiWeb ${SOURCES}
         examples/src/main.cpp
-        examples/src/server.cpp
 
 )
 
 configure_file(${PROJECT_SOURCE_DIR}/examples/public/index.html ${CMAKE_CURRENT_BINARY_DIR}/index.html COPYONLY)
+#
+#set(pybind11_DIR /Users/yggdrasill501/Projects/code/cpp/cimi-web/extern/pybind11/pybind11)
+#find_package(pybind11 REQUIRED)
+
+include_directories(venv/bin/python3)
+include_directories(venv/lib/python3.11/site-packages/pybind11/include)
